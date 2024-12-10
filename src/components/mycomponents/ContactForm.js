@@ -10,23 +10,6 @@ export const ContactForm = () => {
     const [show, setShow] = useState(true);
     const form = useRef();
 
-    const sendMail = (e) => {
-        e.preventDefault();
-        window.Email.send({
-            SecureToken: "6c9491f2-839e-4f47-8de4-18ca0ae1962d",
-            Host: "smtp.elasticemail.com",
-            Username: "lucascsrodriguez@gmail.com",
-            Password: "266D18BD3A223F3E458DB0CAA3E654A79AD7",
-            To: "lucasrodriguezdepena@gmail.com",
-            From: "lucasrodriguezdepena@gmail.com",
-            Subject: "Portfolio - Nuevo mensaje",
-            Body: `Nombre: ${form.current["from_name"].value} <br> Mensaje: ${form.current["message"].value}`,
-        }).then(
-            message => alert(message)
-            //showNotification(200)
-        ).catch(error => console.log(error) /*showNotification(404)*/)
-    }
-
     const showNotification = (status) => {
         setEmailStatus(status);
         setShow(true);
@@ -42,11 +25,14 @@ export const ContactForm = () => {
                     <ToastNotification status={emailStatus} />
                 )
             }
-            <form ref={form} className="container" onSubmit={e => sendMail(e)}>
-                <input type="text" placeholder={texts.formName} name="from_name" id="name_input" required />
-                <input type="email" placeholder={texts.formEmail} name="from_email" id="email_input" required />
+            <form action="https://formsubmit.co/lucascsrodriguez@gmail.com" method="POST" ref={form} className="container">
+                <input type="text" placeholder={texts.formName} name="name" id="name_input" required />
+                <input type="email" placeholder={texts.formEmail} name="email" id="email_input" required />
                 <textarea placeholder={texts.formMessage} name="message" id="message_input" required></textarea>
                 <input className="button-primary" type="submit" id="submit_input" value={texts.formPrimaryButton} />
+                <input type="hidden" name="_next" value="http://lucasrodriguez.netlify.app/"></input>
+                <input type="hidden" name="_captcha" value="false"></input>
+                <input type="hidden" name="_subject" value="Portfolio Message"></input>
             </form>
         </article>
     )

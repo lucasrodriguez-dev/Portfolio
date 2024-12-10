@@ -16,7 +16,6 @@ export const MyRoutes = () => {
             <section className="content">
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/project/:id" element={<ProjectPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </section>

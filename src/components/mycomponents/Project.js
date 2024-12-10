@@ -23,9 +23,7 @@ export const Project = ({ id }) => {
             </div>
             <div className="project-textAndIcons">
                 <span>{proj.categories}</span>
-                <h4>
-                    <Link to={`/project/${proj.id}`} className="subheading">{proj.name}</Link>
-                </h4>
+                <h4 className="subheading">{proj.name}</h4>
                 <ul className="technologies flex flex-row">
                     {
                         proj.technologies &&
@@ -34,7 +32,7 @@ export const Project = ({ id }) => {
                             const IconComponent = SiIcons[iconName];
                             return <li key={technologie}>
                                 {
-                                    IconComponent ? <IconComponent size={18} title={technologie} />
+                                    IconComponent ? <IconComponent size={30} title={technologie} />
                                         : <span>{technologie}</span>
                                 }
                             </li>
@@ -47,11 +45,15 @@ export const Project = ({ id }) => {
                             <SiGithub />
                         </a>
                     </li>
-                    <li>
-                        <a href={proj.url} target="_blank" className="button-terciary">
-                            <FiExternalLink />
-                        </a>
-                    </li>
+                    {
+                        (proj.tryUrl & proj.tryUrl !== "") ?
+                        <li>
+                            <a href={proj.tryUrl} target="_blank" className="button-terciary">
+                                <FiExternalLink />
+                            </a>
+                        </li>
+                        : `\t`
+                    }
                 </ul>
             </div>
         </div>

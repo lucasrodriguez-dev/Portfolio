@@ -62,7 +62,8 @@ export const ProjectPage = () => {
                     </div>
                     <a href={project.url} target="_blank" className="button-secondary">{texts.projectSecondaryButton}</a>
                     {
-                        project.tryUrl !== "" && <a href={project.tryUrl} target="_blank" className="button-primary" style={{ marginLeft: "30px" }}>{texts.projectPrimaryButton}</a>
+                        (project.tryUrl & project.tryUrl !== "") &&
+                         <a href={project.tryUrl} target="_blank" className="button-primary" style={{ marginLeft: "30px" }}>{texts.projectPrimaryButton}</a>
                     }
                 </article>
             </section>
